@@ -13,7 +13,7 @@ function App() {
     setTimeout(() => setCopiedAddress(false), 2000);
   };
 
-  // Tootsy artwork images from the assets/artwork directory
+  // Tootsy artwork images from the assets/artwork directory - ALL 45 images
   const galleryImages = [
     require("./assets/artwork/1.jpeg"),
     require("./assets/artwork/2.jpeg"),
@@ -27,6 +27,39 @@ function App() {
     require("./assets/artwork/10.jpeg"),
     require("./assets/artwork/11.jpeg"),
     require("./assets/artwork/12.jpeg"),
+    require("./assets/artwork/13.jpeg"),
+    require("./assets/artwork/14.jpeg"),
+    require("./assets/artwork/15.jpeg"),
+    require("./assets/artwork/16.jpeg"),
+    require("./assets/artwork/17.jpeg"),
+    require("./assets/artwork/18.jpeg"),
+    require("./assets/artwork/19.jpeg"),
+    require("./assets/artwork/20.jpeg"),
+    require("./assets/artwork/21.jpeg"),
+    require("./assets/artwork/22.jpeg"),
+    require("./assets/artwork/23.jpeg"),
+    require("./assets/artwork/24.jpeg"),
+    require("./assets/artwork/25.jpeg"),
+    require("./assets/artwork/26.jpeg"),
+    require("./assets/artwork/27.jpeg"),
+    require("./assets/artwork/28.jpeg"),
+    require("./assets/artwork/29.jpeg"),
+    require("./assets/artwork/30.jpeg"),
+    require("./assets/artwork/31.jpeg"),
+    require("./assets/artwork/32.jpeg"),
+    require("./assets/artwork/33.jpeg"),
+    require("./assets/artwork/34.jpeg"),
+    require("./assets/artwork/35.jpeg"),
+    require("./assets/artwork/36.jpeg"),
+    require("./assets/artwork/37.jpeg"),
+    require("./assets/artwork/38.jpeg"),
+    require("./assets/artwork/39.jpeg"),
+    require("./assets/artwork/40.jpeg"),
+    require("./assets/artwork/41.jpeg"),
+    require("./assets/artwork/42.jpeg"),
+    require("./assets/artwork/43.jpeg"),
+    require("./assets/artwork/44.jpeg"),
+    require("./assets/artwork/45.jpeg"),
   ];
 
   return (
