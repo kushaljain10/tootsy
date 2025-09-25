@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./App.css";
-import heroBanner from "./assets/hero banner.png";
+import heroBanner from "./assets/hero banner 2.png";
 
 function App() {
   const [copiedAddress, setCopiedAddress] = useState(false);
+  const [modalImage, setModalImage] = useState(null);
+  const [modalIndex, setModalIndex] = useState(0);
 
   const contractAddress = "6d8ecGFQMjUazE1x8vdViFYjhm8eCHWiZ35qbF5xY6Xw";
 
@@ -11,6 +13,28 @@ function App() {
     navigator.clipboard.writeText(contractAddress);
     setCopiedAddress(true);
     setTimeout(() => setCopiedAddress(false), 2000);
+  };
+
+  const openModal = (image, index) => {
+    setModalImage(image);
+    setModalIndex(index);
+  };
+
+  const closeModal = () => {
+    setModalImage(null);
+  };
+
+  const nextImage = () => {
+    const nextIndex = (modalIndex + 1) % galleryImages.length;
+    setModalIndex(nextIndex);
+    setModalImage(galleryImages[nextIndex]);
+  };
+
+  const prevImage = () => {
+    const prevIndex =
+      (modalIndex - 1 + galleryImages.length) % galleryImages.length;
+    setModalIndex(prevIndex);
+    setModalImage(galleryImages[prevIndex]);
   };
 
   // Tootsy artwork images from the assets/artwork directory - ALL 45 images
@@ -104,7 +128,11 @@ function App() {
           <h2 className="section-title">Tootsy's Artwork Gallery</h2>
           <div className="gallery-grid">
             {galleryImages.map((image, index) => (
-              <div key={index} className="gallery-item">
+              <div
+                key={index}
+                className="gallery-item"
+                onClick={() => openModal(image, index)}
+              >
                 <img src={image} alt={`Tootsy artwork ${index + 1}`} />
               </div>
             ))}
@@ -131,26 +159,24 @@ function App() {
       {/* Token Section */}
       <section className="token">
         <div className="container">
-          <h2 className="section-title">$TOOTSY Token</h2>
+          <h2 className="section-title">$TOOTSY</h2>
           <div className="token-info">
             <h3 className="token-name">$TOOTSY</h3>
             <p className="token-description">
-              The official token representing our beloved Tootsy character on
-              the Solana blockchain. Join the Tootsy community and be part of
-              this adorable journey!
+              The official token representing our beloved Tootsy on the Solana
+              blockchain. Join the $Tootsy community and be part of this
+              adorable journey!
             </p>
 
             <div className="contract-section">
               <label className="contract-label">Contract Address:</label>
-              <div className="contract-address-container">
+              <div
+                className="contract-address-container clickable"
+                onClick={copyToClipboard}
+                title="Click to copy address"
+              >
                 <code className="contract-address">{contractAddress}</code>
-                <button
-                  className="copy-button"
-                  onClick={copyToClipboard}
-                  title="Copy to clipboard"
-                >
-                  {copiedAddress ? "✓" : "📋"}
-                </button>
+                <span className="copy-icon">{copiedAddress ? "✓" : "📋"}</span>
               </div>
               {copiedAddress && <span className="copy-feedback">Copied!</span>}
             </div>
@@ -183,6 +209,31 @@ function App() {
           <p>&copy; 2024 Tootsy. Made with ♥ and lots of imagination!</p>
         </div>
       </footer>
+
+      {/* Modal for artwork viewing */}
+      {modalImage && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal}>
+              ×
+            </button>
+            <button className="modal-nav modal-prev" onClick={prevImage}>
+              ‹
+            </button>
+            <img
+              src={modalImage}
+              alt={`Tootsy artwork ${modalIndex + 1}`}
+              className="modal-image"
+            />
+            <button className="modal-nav modal-next" onClick={nextImage}>
+              ›
+            </button>
+            <div className="modal-counter">
+              {modalIndex + 1} / {galleryImages.length}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
